@@ -27,25 +27,25 @@ function TodoAdd({ todos, updateTodo}) {
         text: "",
         isDone: false
     })
-    // const onClickChange = () => {
-    //     updateTodo(todo);//used as a function
-    // };
+    const onClickChange = () => {
+        updateTodo(todo);//used as a function
+    };
 
     const addTodo =(e) => {
         const {value} = e.target;
         setTodo({
             id: todos.length + 1,
             text: value,
-            isDone: false
+            isDone: true
         })
 
     }
-    const onClickChange = () => {
-        const todo = this.todoInput.value.trim()
-        if(!todo) {return}
-        this.props.addTodo(todo)
-        this.todoInput.value = ''
-    }
+    // const onClickChange = () => {
+    //     const todo = this.todoInput.value.trim()
+    //     if(!todo) {return}
+    //     this.props.addTodo(todo)
+    //     this.todoInput.value = ''
+    // }
     return (
         <Container>
         <Input
