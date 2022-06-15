@@ -1,6 +1,5 @@
-// import React, {useState} from "react";
-import styled from "styled-components";
 import DeleteImg from "./delete.png";
+import styled, {css} from "styled-components";
 
 const Container =  styled.div`
 display:flex;
@@ -14,35 +13,39 @@ border: 3px solid blue;
 width: 20px;
 height: 20px;
 margin-right: 10px;
+${(props) =>
+props.isDone &&
+css`
+background-color:#f4acb7;
+`}
 `;
 
 const DeleteImage = styled.img`
 width: 20px;
 heigth: 30px;
-padding-left:265px;
+margin-left:340px;
+position:absolute;
 `;
 
 const Text = styled.div`
 font-size: 24px;
 margin-top:-5px;
 `;
-function TodoItems() {
+function TodoItems({todo, deleteTodo, modifyIsDone}) {
+    const onClickRemove = () => {
+        deleteTodo(todo.id);
+    };
+    function IsDoneChange(){
+        modifyIsDone(todo.id)
+    }
     return (
         <Container>
-            <Check></Check>
-            <Text>hello</Text>
-            <DeleteImage type="checkbox" src={DeleteImg} onClick={deleteItem}></DeleteImage>
+            <Check isDone={todo.isDone} onClick={IsDoneChange}></Check>
+            <Text>{todo.text}</Text>
+            <DeleteImage type="checkbox" src={DeleteImg} onClick={onClickRemove}></DeleteImage>
         </Container>
     )
 }
-const deleteItem =(e) => 
-    document.getElementsByTagName('div')[0].remove();
-    // const {value} = e.target;
-    // setTodo({
-    //     id: '',
-    //     text: '',
-    //     isDone: false
-    // })
 
 export default TodoItems;
 // import React, {useState} from "react";
