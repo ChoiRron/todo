@@ -3,8 +3,8 @@ import styled from "styled-components";
 import TodoDate from "../TodoDate";
 import TodoAdd  from "../TodoAdd";
 import TodoLeft from "../TodoLeft";
-import TodoItems from "../TodoItems"
-
+// import TodoItems from "../TodoItems"
+import TodoList from "../TodoList"
 const Container = styled.div`
 background-color:#588157;
 // width:100%;
@@ -23,14 +23,20 @@ const TodoContainer = styled.div`
 
 
 function MainPage () {
-    const [todos, setTodos] = useState([
-        { isDone: false, text: "hello", id:1 }
-    ]);
+    const [todos, setTodos] = useState([]);
 
      const addTodo =(todo) => {
         setTodos([...todos, todo]);
     };
-  
+    //.filter 
+    //.map --> iterate the array
+  const removeTodo = (id) => {
+      console.log(id);
+      const newTodos = todos.filter((todo) => todo.id != id);
+      setTodos(newTodos);
+    //   const newTodos = [];
+    //   setTodos ([newTodos]);
+  };
     return (
 
         
@@ -39,7 +45,8 @@ function MainPage () {
             <TodoDate />
             <TodoLeft todos={todos} />
             <TodoAdd todos={todos} updateTodo={addTodo}/>
-            <TodoItems/>
+            <TodoList todos={todos} deleteTodo={removeTodo}/>
+            {/* <TodoItems todos={todos} deleteTodo={removeTodo}/> */}
             </TodoContainer>
          </Container>
     );
